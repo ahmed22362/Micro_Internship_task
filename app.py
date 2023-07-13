@@ -1,55 +1,55 @@
-import sys
-
-from PySide6.QtCore import QSize, Qt
-from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QLabel, QLineEdit, QVBoxLayout, QWidget
-from random import choice
-
-window_titles = [
-    'My App',
-    'My App',
-    'Still My App',
-    'Still My App',
-    'What on earth',
-    'What on earth',
-    'This is surprising',
-    'This is surprising',
-    'Something went wrong'
-]
+from PySide6.QtWidgets import (
+    QApplication, QLabel, QLineEdit, QPushButton,
+    QVBoxLayout, QHBoxLayout, QWidget, QMessageBox
+)
+from matplotlib.backends.backend_qt5agg import FigureCanvas
+from matplotlib.figure import Figure
+import numpy as np
+import re
 
 
-class MainWindow(QMainWindow):
+class MainWindow(QWidget):
+
     def __init__(self):
         super().__init__()
 
-        self.setWindowTitle("My App")
+        # build the main layout
+        self.setWindowTitle("Function Plotter")
+        self.layout = QVBoxLayout()
+        self.setLayout(self.layout)
 
-        self.label = QLabel()
-        self.input = QLineEdit()
+        # define figure or chart GUI
+        self.figure = Figure()
+        self.canvas = FigureCanvas(self.figure)
 
-        self.input.textChanged.connect(self.label.setText)
+        # Create widgets
+        self.function_label = QLabel("Enter function: y = ")
+        self.function_input = QLineEdit()
+        self.minx_label = QLabel("Min x:")
+        self.minx_input = QLineEdit()
+        self.maxx_label = QLabel("Max x:")
+        self.maxx_input = QLineEdit()
+        self.submit_button = QPushButton("Plot")
 
-        layout = QVBoxLayout()
-        layout.addWidget(self.input)
-        layout.addWidget(self.label)
-        container = QWidget()
-        container.setLayout(layout)
-        self.setCentralWidget(container)
-    
-    def the_button_was_clicked(self):
-        print("Clicked!")
-        new_windows_title = choice(window_titles)
-        print("setting title: %s" %new_windows_title)
-        self.setWindowTitle(new_windows_title) 
+        # Layout
+        function_layout = QHBoxLayout()
+        function_layout.addWidget(self.function_label)
+        function_layout.addWidget(self.function_input)
 
-    def the_window_title_changed(self,window_title):
-        print("window title changed %s" %window_title)
-        if window_title == "Something went wrong":
-            self.button.setText("something went wrong")
-            self.button.setDisabled(True)
+        xrange_layout = QHBoxLayout()
+        xrange_layout.addWidget(self.minx_label)
+        xrange_layout.addWidget(self.minx_input)
+        xrange_layout.addWidget(self.maxx_label)
+        xrange_layout.addWidget(self.maxx_input)
 
-app = QApplication(sys.argv)
+        self.layout.addLayout(function_layout)
+        self.layout.addLayout(xrange_layout)
+        self.layout.addWidget(self.submit_button)
+        self.layout.addWidget(self.canvas)
 
-window =MainWindow()
-window.show()
 
-app.exec()
+if __name__ == "__main__":
+    app = QApplication([])
+    widget = PlotWidget()
+    widget.show()
+    app.exec()
