@@ -57,10 +57,10 @@ This is a Python GUI program that plots an arbitrary user-entered function using
 
 ## Validate example
 
-- Missed function
+- Missed function \
   ![Function missed](/example_screenshots/missed_function.png)
-- Missed Range
-  ![Range missed](/example_screenshots/Range_missed.png)!
+- Missed Range \
+  ![Range missed](/example_screenshots/Range_missed.png)
 - Function error for example: x+y \
   ![Function error](/example_screenshots/function_invalid_erroe.png)
 - Min bigger than Max\
