@@ -171,7 +171,7 @@ def validate_inputs(function, min_x, max_x):
     try:
         func_2_string(function)
     except Exception as e:
-        raise ValueError("Invalid function") from e
+        raise ValueError(message) from e
 
 
 if __name__ == "__main__":
