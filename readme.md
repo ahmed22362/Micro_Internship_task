@@ -66,6 +66,18 @@ This is a Python GUI program that plots an arbitrary user-entered function using
 - Min bigger than Max\
   ![min_vs_max_error](/example_screenshots/min_vs_max_error.png)
 
+## Automated Tests
+
+Automated tests have been implemented using `pytest` and `pytest-qt`. The tests cover various functionalities of the program to ensure correct behavior and validate input validation.
+
+To run the tests, make sure you have `pytest` and `pytest-qt` installed, and then execute the following command in the terminal:
+
+```
+pytest -v
+```
+
+The test cases are defined in the test_app.py file in the repository.
+
 ## Contributing
 
 Contributions are welcome! If you find any issues or have suggestions for improvement, please open an issue or submit a pull request.
